@@ -12,6 +12,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Icon from "react-native-vector-icons/Ionicons";
 
+import I18n from "./i18n/i18n";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -34,7 +36,7 @@ class App extends React.Component {
               component={FixtureListStack}
               options={{
                 headerShown: false,
-                tabBarLabel: 'Fixtures',
+                tabBarLabel: I18n.t('fixtures'),
                 tabBarIcon: ({ color, size }) => (
                   <Icon name="football" color={color} size={size} />
                 ),
@@ -44,7 +46,7 @@ class App extends React.Component {
               component={FixtureListStack}
               options={{
                 headerShown: false,
-                tabBarLabel: 'Standings',
+                tabBarLabel: I18n.t('standings'),
                 tabBarIcon: ({ color, size }) => (
                   <Icon name="ios-podium" color={color} size={size} />
                 ),
@@ -54,7 +56,7 @@ class App extends React.Component {
               component={FixtureListStack}
               options={{
                 headerShown: false,
-                tabBarLabel: 'Settings',
+                tabBarLabel: I18n.t('settings'),
                 tabBarIcon: ({ color, size }) => (
                   <Icon name="settings" color={color} size={size} />
                 ),
