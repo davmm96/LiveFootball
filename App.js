@@ -8,18 +8,58 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import FixtureDetail from './components/FixtureDetail';
 import FixtureList from './components/FixtureList';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import Icon from "react-native-vector-icons/Ionicons";
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
+
+const FixtureListStack = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="fixtureList" component={FixtureList}/>
+    <Stack.Screen name="fixtureDetail" component={FixtureDetail}/>
+  </Stack.Navigator>
+
+)
 class App extends React.Component {
 
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="fixtureList" component={FixtureList}/>
-          <Stack.Screen name="fixtureDetail" component={FixtureDetail}/>
-        </Stack.Navigator>
+        <Tab.Navigator>
+          <Tab.Screen 
+              name="fixtures" 
+              component={FixtureListStack}
+              options={{
+                headerShown: false,
+                tabBarLabel: 'Fixtures',
+                tabBarIcon: ({ color, size }) => (
+                  <Icon name="football" color={color} size={size} />
+                ),
+              }}/>
+          <Tab.Screen 
+              name="standing" 
+              component={FixtureListStack}
+              options={{
+                headerShown: false,
+                tabBarLabel: 'Standings',
+                tabBarIcon: ({ color, size }) => (
+                  <Icon name="ios-podium" color={color} size={size} />
+                ),
+              }}/>
+          <Tab.Screen 
+              name="settings" 
+              component={FixtureListStack}
+              options={{
+                headerShown: false,
+                tabBarLabel: 'Settings',
+                tabBarIcon: ({ color, size }) => (
+                  <Icon name="settings" color={color} size={size} />
+                ),
+              }}/>
+        </Tab.Navigator>
       </NavigationContainer>
     );
   }

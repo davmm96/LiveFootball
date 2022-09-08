@@ -1,6 +1,7 @@
 import React from "react";
 
 import {
+    View,
     Text,
   } from 'react-native';
 
@@ -18,6 +19,10 @@ export default class FixtureDetail extends React.Component {
 
     render () {
 
-        return <Text>{this.fixture.teams.home.name} vs {this.fixture.teams.away.name} </Text>
+        return (
+            <View>
+                <Text>{this.fixture.teams.home.name} vs {this.fixture.teams.away.name} </Text>
+            </View>
+        )
     }
 }
