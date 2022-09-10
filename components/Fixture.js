@@ -3,10 +3,11 @@ import React from "react";
 import {
     Image,
     Pressable,
-    StyleSheet,
     Text,
     View,
   } from 'react-native';
+
+  import Styles from '../Styles';
 
 export default class Fixture extends React.Component
 {
@@ -14,32 +15,18 @@ export default class Fixture extends React.Component
         const { localName, localImg, awayName, awayImg } = this.props
         return (
             <Pressable onPress={this.props.onPress}>
-                <View style={styles.fixture}>
+                <View style={Styles.fixture}>
                 <View>
                     <Text>{localName}</Text>
-                    <Image source={{ uri: localImg}} style={styles.image}/>
+                    <Image source={{ uri: localImg}} style={Styles.image}/>
                 </View>
                 <Text> VS </Text>
                 <View>
                     <Text>{awayName}</Text>
-                    <Image source={{ uri: awayImg}} style={styles.image}/>
+                    <Image source={{ uri: awayImg}} style={Styles.image}/>
                 </View>
                 </View>
             </Pressable>
           )
     }
 }
-
-const styles = StyleSheet.create({
-    image: {
-      width: 50,
-      height: 50
-    },
-    fixture: {
-      flex: 1,
-      flexDirection: 'row',
-      fontSize: 12,
-      padding: 30,
-      borderBottomWidth: 1,
-    },
-  });

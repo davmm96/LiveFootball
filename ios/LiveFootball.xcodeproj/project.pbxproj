@@ -104,7 +104,6 @@
 				77C1A1DA325C509A6A04FC40 /* Pods-LiveFootball-LiveFootballTests.debug.xcconfig */,
 				6FFD33995CBB543BB9FB76D7 /* Pods-LiveFootball-LiveFootballTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -219,6 +218,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;

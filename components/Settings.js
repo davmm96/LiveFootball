@@ -13,7 +13,7 @@ import Fixture from './Fixture';
 import Styles from '../Styles';
 
 
-export default class FixtureList extends React.Component {
+export default class Settings extends React.Component {
 
   constructor(props) {
     super(props)
@@ -80,4 +80,3 @@ export default class FixtureList extends React.Component {
     })
   }
 }
-
