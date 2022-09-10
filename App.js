@@ -54,7 +54,7 @@ const StandingStack = () => (
         name="standingList" 
         component={StandingList}/>
     <Stack.Screen 
-        name="fixtureDetail" 
+        name="standingDetail" 
         component={StandingDetail}/>
   </Stack.Navigator>
 )
@@ -74,7 +74,7 @@ class App extends React.Component {
             tabBarShowLabel: true,
             tabBarStyle: {
               color: 'white',
-              backgroundColor: Constants.MAIN_COLOR,
+              backgroundColor: Constants.PRIMARY_COLOR,
             }
          }}>
             <Tab.Screen 

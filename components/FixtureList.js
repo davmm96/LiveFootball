@@ -1,16 +1,11 @@
-import React, { cloneElement } from 'react';
+import React from 'react';
 import {
   FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
 } from 'react-native';
-
 import Constants from '../Constants';
 import APISports from '../api/APISports';
 import Fixture from './Fixture';
-import Styles from '../Styles';
+import I18n from "../i18n/i18n";
 
 
 export default class FixtureList extends React.Component {
@@ -24,7 +19,7 @@ export default class FixtureList extends React.Component {
     }
 
     props.navigation.setOptions({
-        title: 'Next Games',
+        title: I18n.t('fixtures_label')
     })
   }
 
@@ -45,39 +40,30 @@ export default class FixtureList extends React.Component {
   }
 
   render() {
-    return (<SafeAreaView style={Styles.container}>
-      {this.renderList()}
-      </SafeAreaView>);
-  }
-
-  renderList() {
-
-    const { fixtures, loading } = this.state
+    const {fixtures, loading} = this.state
 
     return(
       <FlatList
         data={fixtures}
-        renderItem={this.renderItem}
+        renderItem={this.renderFixture}
         onRefresh={() => this.loadFixtures()}
         refreshing={loading}
       />
     )
   }
 
-  renderItem = ({item}) => (
+  renderFixture = ({item}) => (
     <Fixture 
         localName={item.teams.home.name} 
         localImg={item.teams.home.logo} 
         awayName={item.teams.away.name}
         awayImg={item.teams.away.logo}
-        onPress={() => this.onFixturePress(item)}
+        date={item.fixture.date}
+        onPress={() => this.goToDetail(item)}
     />
   )
 
-  onFixturePress = (fixture) => {
-    this.props.navigation.navigate('fixtureDetail', {
-        fixture: fixture,
-    })
+  goToDetail = (fixture) => {
+    this.props.navigation.navigate('fixtureDetail', {fixture: fixture})
   }
 }
-
