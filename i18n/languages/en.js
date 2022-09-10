@@ -1,8 +1,9 @@
 export default {
     fixtures: 'Games',
-    standings: 'Table',
+    fixtures_live: 'Live',
     settings: 'Settings',
     fixtures_label: 'Next Games',
-    standing_label: 'Table',
-    fixture_detail_label: 'Game Info'
+    live_label: 'Live Games',
+    fixture_detail_label: 'Game Info',
+    undefined: 'Desconocido'
 }

@@ -7,6 +7,7 @@ export default class Constants
 
 
   static PRIMARY_COLOR = "#51A331";
+  static PRIMARY_COLOR_TRANSPARENCY = 'rgba(81, 163, 49, 0.2)';
   static SECONDARY_COLOR = "#fff";
   static INACTIVE_COLOR = "#D3D3D3";
 }

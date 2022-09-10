@@ -1,6 +1,9 @@
 import React from 'react';
 import {
   FlatList,
+  View,
+  Text,
+  Image
 } from 'react-native';
 import Constants from '../Constants';
 import APISports from '../api/APISports';
@@ -43,12 +46,15 @@ export default class FixtureList extends React.Component {
     const {fixtures, loading} = this.state
 
     return(
-      <FlatList
-        data={fixtures}
-        renderItem={this.renderFixture}
-        onRefresh={() => this.loadFixtures()}
-        refreshing={loading}
-      />
+      <View>
+        <FlatList
+          data={fixtures}
+          renderItem={this.renderFixture}
+          onRefresh={() => this.loadFixtures()}
+          refreshing={loading}
+        />
+      </View>
+      
     )
   }
 

@@ -10,10 +10,10 @@ import {
 
   import Styles from '../Styles';
 
-export default class Fixture extends React.Component
+export default class FixtureLive extends React.Component
 {
     render() {
-        const { localName, localImg, awayName, awayImg, date } = this.props
+        const { localName, localImg, awayName, awayImg, goalsLocal, goalsAway, minutes } = this.props
         return (
             <Pressable onPress={this.props.onPress}>
                 <View style={[Styles.row, Styles.fixtureRow]}>
@@ -28,21 +28,11 @@ export default class Fixture extends React.Component
                         </View>
                     </View>
                     <View style={[Styles.column,, Styles.container, Styles.fixtureDate]}>
-                        <Text>{this.convertDate(date)}</Text>
-                        <Text>{this.convertHour(date)}</Text>
+                        <Text>{goalsLocal} - {goalsAway}</Text>
+                        <Text>{minutes}'</Text>
                     </View>
                 </View>
             </Pressable>
           )
-    }
-
-    convertDate(date)
-    {
-        return moment(new Date(date)).format('DD/MM/YY');
-    }
-
-    convertHour(date)
-    {
-        return moment(new Date(date)).format('HH:mm');
     }
 }

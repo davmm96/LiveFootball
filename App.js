@@ -8,8 +8,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import FixtureDetail from './components/FixtureDetail';
 import FixtureList from './components/FixtureList';
-import StandingList from './components/StandingList';
-import StandingDetail from './components/StandingDetail';
+import FixtureLiveList from './components/FixtureLiveList';
+import FixtureLiveDetail from './components/FixtureLiveDetail';
 import Settings from './components/Settings';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from "react-native-vector-icons/Ionicons";
@@ -39,7 +39,7 @@ const FixtureStack = () => (
   </Stack.Navigator>
 )
 
-const StandingStack = () => (
+const LiveStack = () => (
   <Stack.Navigator
     screenOptions={{
         headerStyle: {
@@ -51,11 +51,11 @@ const StandingStack = () => (
         },
     }}>
     <Stack.Screen 
-        name="standingList" 
-        component={StandingList}/>
+        name="liveList" 
+        component={FixtureLiveList}/>
     <Stack.Screen 
-        name="standingDetail" 
-        component={StandingDetail}/>
+        name="liveDetail" 
+        component={FixtureLiveDetail}/>
   </Stack.Navigator>
 )
 
@@ -88,13 +88,13 @@ class App extends React.Component {
                   ),
                 }}/>
             <Tab.Screen 
-                name="standing" 
-                component={StandingStack}
+                name="live" 
+                component={LiveStack}
                 options={{
                   headerShown: false,
-                  tabBarLabel: I18n.t('standings'),
+                  tabBarLabel: I18n.t('fixtures_live'),
                   tabBarIcon: ({ color, size }) => (
-                    <Icon name="ios-podium" color={color} size={size} />
+                    <Icon name="ios-logo-rss" color={color} size={size} />
                   ),
                 }}/>
             <Tab.Screen 
