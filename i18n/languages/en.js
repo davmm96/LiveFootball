@@ -5,5 +5,10 @@ export default {
     fixtures_label: 'Next Games',
     live_label: 'Live Games',
     fixture_detail_label: 'Game Info',
-    undefined: 'Desconocido'
+    undefined: 'Desconocido',
+
+    settingsLeague: 'League',
+    settingsGames: 'Games',
+    settingsLive: 'Live',
+    settingsInfo: 'Info Version',
 }

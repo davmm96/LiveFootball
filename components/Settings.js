@@ -1,82 +1,93 @@
-import React, { cloneElement } from 'react';
+import React from 'react';
 import {
-  FlatList,
+  Image,
   SafeAreaView,
-  StyleSheet,
+  ScrollView,
+  Pressable,
   Text,
   View,
+  Button
 } from 'react-native';
 
-import Constants from '../Constants';
-import APISports from '../api/APISports';
-import Fixture from './Fixture';
 import Styles from '../Styles';
+import I18n from "../i18n/i18n";
+import Constants from '../Constants';
+import Premier from '../resources/premier.png'
+import Liga from '../resources/laliga.png'
+import Bundesliga from '../resources/bundesliga.png'
 
 
 export default class Settings extends React.Component {
 
   constructor(props) {
     super(props)
-    this.apiClient = new APISports()
-    this.state = {
-      fixtures:[],
-      loading: false,
-    }
-
     props.navigation.setOptions({
-        title: 'Next Games',
-    })
-  }
-
-  componentDidMount () {
-    this.loadFixtures()
-  }
-
-  async loadFixtures(){
-
-    this.setState({loading: true})
-
-    const result = await this.apiClient.getFixtures(Constants.DEFAULT_LEAGUE,Constants.DEFAULT_SEASON)
-
-    this.setState({
-      fixtures: result.resultFixtures,
-      loading: false,
+        title: I18n.t('settings'),
+        headerStyle: {
+            backgroundColor: Constants.PRIMARY_COLOR,
+          },
+          headerTintColor: Constants.SECONDARY_COLOR,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
     })
   }
 
   render() {
     return (<SafeAreaView style={Styles.container}>
-      {this.renderList()}
-      </SafeAreaView>);
+              <ScrollView>
+                <View style={[Styles.column]}>
+                  <View style={[Styles.column, Styles.teams, Styles.greenBox]}>
+                      <Text style={[Styles.textSettings]}>{I18n.t('settingsLeague')}</Text>
+                      <View style={[Styles.row]}>
+                        <Pressable onPress={this.setLeague(39)}>
+                          <Image source={{ uri: Image.resolveAssetSource(Premier).uri}} style={[Styles.imageSettings]}/>
+                        </Pressable>
+                        <Pressable onPress={this.setLeague(140)}>
+                          <Image source={{ uri: Image.resolveAssetSource(Liga).uri}} style={[Styles.imageSettings]}/>
+                        </Pressable>
+                        <Pressable onPress={this.setLeague(78)}>
+                          <Image source={{ uri: Image.resolveAssetSource(Bundesliga).uri}} style={[Styles.imageSettings]}/>
+                        </Pressable>
+                      </View>
+                  </View>
+                  <View style={[Styles.column, Styles.teams, Styles.greenBox]}>
+                      <Text style={[Styles.textSettings]}>{I18n.t('settingsGames')}</Text>
+                      <Button
+                        onPress={this.setGames(10)}
+                        title="10"
+                        color="#841584"
+                        accessibilityLabel="10"
+                      />
+                      <Button
+                        onPress={this.setGames(20)}
+                        title="20"
+                        color="#841584"
+                        accessibilityLabel="20"
+                      />
+                      <Button
+                        onPress={this.setGames(30)}
+                        title="30"
+                        color="#841584"
+                        accessibilityLabel="30"
+                      />
+                  </View>
+                  <View style={[Styles.column, Styles.teams, Styles.greenBox]}>
+                      <Text style={[Styles.textSettings]}>{I18n.t('settingsInfo')}</Text>
+                      <Text>LiveFootball V1.0</Text>
+                      <Text>David Melero Morant</Text>
+                      <Text>2022</Text>
+                  </View>
+                </View>
+              </ScrollView>
+            </SafeAreaView>);
   }
 
-  renderList() {
+  setLeague = (id) => {
 
-    const { fixtures, loading } = this.state
-
-    return(
-      <FlatList
-        data={fixtures}
-        renderItem={this.renderItem}
-        onRefresh={() => this.loadFixtures()}
-        refreshing={loading}
-      />
-    )
   }
 
-  renderItem = ({item}) => (
-    <Fixture 
-        localName={item.teams.home.name} 
-        localImg={item.teams.home.logo} 
-        awayName={item.teams.away.name}
-        awayImg={item.teams.away.logo}
-        onPress={() => this.onFixturePress(item)}
-    />
-  )
+  setGames = (games) => {
 
-  onFixturePress = (fixture) => {
-    this.props.navigation.navigate('fixtureDetail', {
-        fixture: fixture,
-    })
   }
 }

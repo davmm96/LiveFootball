@@ -75,6 +75,11 @@ export default StyleSheet.create({
         width: 60,
         height: 60,
       },
+      imageSettings: {
+        width: 80,
+        height: 80,
+        marginRight: 30
+      },
       imageEventLive: {
         width: 20,
         height: 20,
@@ -88,5 +93,11 @@ export default StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         color: 'red'
+      },
+      textSettings: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginBottom: 10
       },
 });

@@ -2,8 +2,6 @@ import React from 'react';
 import {
   FlatList,
   View,
-  Text,
-  Image
 } from 'react-native';
 import Constants from '../Constants';
 import APISports from '../api/APISports';

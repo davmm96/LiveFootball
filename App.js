@@ -101,7 +101,7 @@ class App extends React.Component {
                 name="settings" 
                 component={Settings}
                 options={{
-                  headerShown: false,
+                  headerShown: true,
                   tabBarLabel: I18n.t('settings'),
                   tabBarIcon: ({ color, size }) => (
                     <Icon name="settings" color={color} size={size} />
