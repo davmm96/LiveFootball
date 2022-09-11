@@ -13,6 +13,13 @@ export default {
     settingsInfo: 'Información',
 
     gameReminder: '¡Partido añadido correctamente!',
-    textReminder: 'Añadir'
+    textReminder: 'Añadir',
+
+    leaguePreferencesPremier: '¡La Premier League es tu liga por defecto!',
+    leaguePreferencesLiga: '¡La Liga Santander es tu liga por defecto!',
+    leaguePreferencesBundesliga: '¡La Bundesliga es tu liga por defecto!',
+    gamesPreferences10: '¡Se mostrarán 10 partidos en el feed!',
+    gamesPreferences20: '¡Se mostrarán 20 partidos en el feed!',
+    gamesPreferences30: '¡Se mostrarán 30 partidos en el feed!',
 }
 

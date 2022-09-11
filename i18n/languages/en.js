@@ -13,5 +13,12 @@ export default {
     settingsInfo: 'Info Version',
 
     gameReminder: '¡Game added correctly!',
-    textReminder: 'Add'
+    textReminder: 'Add',
+
+    leaguePreferencesPremier: '¡Premier League is now your default league!',
+    leaguePreferencesLiga: '¡Liga Santander is now your default league!',
+    leaguePreferencesBundesliga: '¡Bundesliga is now your default league!',
+    gamesPreferences10: '¡The feed will show the next 10 games!',
+    gamesPreferences20: '¡The feed will show the next 20 games',
+    gamesPreferences30: '¡The feed will show the next 30 games!',
 }
