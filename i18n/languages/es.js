@@ -11,5 +11,8 @@ export default {
     settingsGames: 'Partidos',
     settingsLive: 'Directo',
     settingsInfo: 'Información',
+
+    gameReminder: '¡Partido añadido correctamente!',
+    textReminder: 'Añadir recordatorio'
 }
 

@@ -11,4 +11,7 @@ export default {
     settingsGames: 'Games',
     settingsLive: 'Live',
     settingsInfo: 'Info Version',
+
+    gameReminder: '¡Game added correctly!',
+    textReminder: 'Add reminder'
 }

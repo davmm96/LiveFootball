@@ -5,6 +5,8 @@ import {
     Text,
     Image,
     Animated,
+    NativeModules,
+    Pressable
   } from 'react-native';
   import I18n from "../i18n/i18n";
   import Styles from "../Styles";
@@ -65,28 +67,47 @@ export default class FixtureDetail extends React.Component {
                         <Animated.Image source={{ uri: Image.resolveAssetSource(Whistle).uri}} style={[[Styles.imageDetail, {opacity: this.opacity}]]}/>
                         <Text style={[Styles.textBox]}>{referee}</Text>
                     </View>
-                    <View style={[Styles.column, Styles.greenBox]}>
-                        <Animated.Image source={{ uri: Image.resolveAssetSource(Calendar).uri}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
-                        <Text style={[Styles.textBox]}>{this.convertDate(this.fixture.fixture.date)} - {this.convertHour(this.fixture.fixture.date)}</Text>
-                    </View>
+                    <Pressable onPress={this.addReminder}>
+                        <View style={[Styles.column, Styles.greenBox]}>
+                            <Text style={[Styles.textBox]}>{I18n.t('textReminder')}</Text>
+                            <Animated.Image source={{ uri: Image.resolveAssetSource(Calendar).uri}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
+                            <Text style={[Styles.textBox]}>{this.convertDate(this.fixture.fixture.date)} - {this.convertHour(this.fixture.fixture.date)}</Text>
+                        </View>
+                    </Pressable>
                 </View>
                 <View style={[Styles.row]}>
-                <View style={[Styles.column, Styles.greenBox]}>
-                        <Animated.Image source={{ uri: Image.resolveAssetSource(Stadium).uri}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
-                        <Text style={[Styles.textBox]}>{venue}</Text>
+                    <View style={[Styles.column, Styles.greenBox]}>
+                            <Animated.Image source={{ uri: Image.resolveAssetSource(Stadium).uri}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
+                            <Text style={[Styles.textBox]}>{venue}</Text>
                     </View>
                 </View>
             </View>
         )
     }
 
+    addReminder = async () => {
+        const name = this.fixture.teams.home.name + ' VS ' + this.fixture.teams.away.name;
+        const CalendarManager = NativeModules.CalendarManager;
+
+        try {
+            await CalendarManager.addGame(
+                name, 
+                new Date(this.fixture.fixture.date).toISOString()
+            );
+
+            alert(I18n.t('gameReminder'));
+        } catch (error) {
+            alert(error);
+        }
+    };
+
     convertDate(timestamp)
     {
         return moment(new Date(timestamp)).format('DD/MM/YY');
-    }
+    };
 
     convertHour(timestamp)
     {
         return moment(new Date(timestamp)).format('HH:mm');
-    }
+    };
 }
