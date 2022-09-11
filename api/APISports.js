@@ -5,9 +5,9 @@ export default class APISports
   static API_KEY = Constants.API_KEY;
   static HOST = Constants.BASE_URL;
 
-  async getFixtures(id_league, season) 
+  async getFixtures(id_league, season, games) 
   {
-    let url = `${APISports.HOST}/fixtures?league=${id_league}&season=${season}&next=10`;
+    let url = `${APISports.HOST}/fixtures?league=${id_league}&season=${season}&next=${games}`;
 
     const response = await fetch(url, { 
       method: 'get', 
@@ -23,7 +23,7 @@ export default class APISports
     }
   }
 
-  async getFixturesLive(id_league, season) 
+  async getFixturesLive() 
   {
     let url = `${APISports.HOST}/fixtures?live=all`;
 

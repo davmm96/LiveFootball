@@ -100,4 +100,24 @@ export default StyleSheet.create({
         fontSize: 20,
         marginBottom: 10
       },
+      rowSettings: {
+        alignItems: 'center',
+      },
+      buttonSettings: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
+        backgroundColor: Constants.PRIMARY_COLOR,
+        marginRight: 20
+      },
+      textButton: {
+        fontSize: 16,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: 'white',
+      }
 });

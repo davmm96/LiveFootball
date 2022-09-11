@@ -3,7 +3,6 @@ import {
   FlatList,
 } from 'react-native';
 
-import Constants from '../Constants';
 import APISports from '../api/APISports';
 import FixtureLive from './FixtureLive';
 import I18n from "../i18n/i18n";
@@ -32,7 +31,7 @@ export default class FixtureLiveList extends React.Component {
 
     this.setState({loading: true})
 
-    const result = await this.apiClient.getFixturesLive(Constants.DEFAULT_LEAGUE,Constants.DEFAULT_SEASON)
+    const result = await this.apiClient.getFixturesLive()
 
     this.setState({
       live: result.resultLive,

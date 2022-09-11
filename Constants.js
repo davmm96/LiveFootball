@@ -4,6 +4,7 @@ export default class Constants
   static BASE_URL = 'https://v3.football.api-sports.io';
   static DEFAULT_LEAGUE = 140;
   static DEFAULT_SEASON = 2022;
+  static DEFAULT_GAMES = 10;
 
 
   static PRIMARY_COLOR = "#51A331";

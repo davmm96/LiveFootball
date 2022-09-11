@@ -6,7 +6,8 @@ import {
   Pressable,
   Text,
   View,
-  Button
+  Button,
+  Alert
 } from 'react-native';
 
 import Styles from '../Styles';
@@ -15,6 +16,7 @@ import Constants from '../Constants';
 import Premier from '../resources/premier.png'
 import Liga from '../resources/laliga.png'
 import Bundesliga from '../resources/bundesliga.png'
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default class Settings extends React.Component {
@@ -40,37 +42,30 @@ export default class Settings extends React.Component {
                   <View style={[Styles.column, Styles.teams, Styles.greenBox]}>
                       <Text style={[Styles.textSettings]}>{I18n.t('settingsLeague')}</Text>
                       <View style={[Styles.row]}>
-                        <Pressable onPress={this.setLeague(39)}>
+                        <Pressable onPress={() => AsyncStorage.setItem('league', '39')}>
                           <Image source={{ uri: Image.resolveAssetSource(Premier).uri}} style={[Styles.imageSettings]}/>
                         </Pressable>
-                        <Pressable onPress={this.setLeague(140)}>
+                        <Pressable onPress={() => AsyncStorage.setItem('league', '140')}>
                           <Image source={{ uri: Image.resolveAssetSource(Liga).uri}} style={[Styles.imageSettings]}/>
                         </Pressable>
-                        <Pressable onPress={this.setLeague(78)}>
+                        <Pressable onPress={() => AsyncStorage.setItem('league', '78')}>
                           <Image source={{ uri: Image.resolveAssetSource(Bundesliga).uri}} style={[Styles.imageSettings]}/>
                         </Pressable>
                       </View>
                   </View>
                   <View style={[Styles.column, Styles.teams, Styles.greenBox]}>
                       <Text style={[Styles.textSettings]}>{I18n.t('settingsGames')}</Text>
-                      <Button
-                        onPress={this.setGames(10)}
-                        title="10"
-                        color="#841584"
-                        accessibilityLabel="10"
-                      />
-                      <Button
-                        onPress={this.setGames(20)}
-                        title="20"
-                        color="#841584"
-                        accessibilityLabel="20"
-                      />
-                      <Button
-                        onPress={this.setGames(30)}
-                        title="30"
-                        color="#841584"
-                        accessibilityLabel="30"
-                      />
+                      <View style={[Styles.row, Styles.rowSettings]}>
+                        <Pressable style={Styles.buttonSettings} onPress={() => AsyncStorage.setItem('games', '10')}>
+                          <Text style={Styles.textButton}>10</Text>
+                        </Pressable>
+                        <Pressable style={Styles.buttonSettings} onPress={() => AsyncStorage.setItem('games', '20')}>
+                          <Text style={Styles.textButton}>20</Text>
+                        </Pressable>
+                        <Pressable style={Styles.buttonSettings} onPress={() => AsyncStorage.setItem('games', '30')}>
+                          <Text style={Styles.textButton}>30</Text>
+                        </Pressable>
+                      </View>
                   </View>
                   <View style={[Styles.column, Styles.teams, Styles.greenBox]}>
                       <Text style={[Styles.textSettings]}>{I18n.t('settingsInfo')}</Text>
@@ -81,13 +76,5 @@ export default class Settings extends React.Component {
                 </View>
               </ScrollView>
             </SafeAreaView>);
-  }
-
-  setLeague = (id) => {
-
-  }
-
-  setGames = (games) => {
-
   }
 }

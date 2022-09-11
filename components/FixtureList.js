@@ -7,6 +7,7 @@ import Constants from '../Constants';
 import APISports from '../api/APISports';
 import Fixture from './Fixture';
 import I18n from "../i18n/i18n";
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default class FixtureList extends React.Component {
@@ -17,6 +18,8 @@ export default class FixtureList extends React.Component {
     this.state = {
       fixtures:[],
       loading: false,
+      league: undefined,
+      games: undefined
     }
 
     props.navigation.setOptions({
@@ -32,7 +35,17 @@ export default class FixtureList extends React.Component {
 
     this.setState({loading: true})
 
-    const result = await this.apiClient.getFixtures(Constants.DEFAULT_LEAGUE,Constants.DEFAULT_SEASON)
+    
+    this.league = await AsyncStorage.getItem('league');
+    this.games = await AsyncStorage.getItem('games');
+
+    if(!this.league)
+      this.league = Constants.DEFAULT_LEAGUE
+
+    if(!this.games)
+      this.games = Constants.DEFAULT_GAMES
+
+    const result = await this.apiClient.getFixtures(this.league,Constants.DEFAULT_SEASON, this.games)
 
     this.setState({
       fixtures: result.resultFixtures,
