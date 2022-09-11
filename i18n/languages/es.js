@@ -13,6 +13,6 @@ export default {
     settingsInfo: 'Información',
 
     gameReminder: '¡Partido añadido correctamente!',
-    textReminder: 'Añadir recordatorio'
+    textReminder: 'Añadir'
 }
 

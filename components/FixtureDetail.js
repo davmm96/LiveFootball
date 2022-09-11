@@ -6,7 +6,8 @@ import {
     Image,
     Animated,
     NativeModules,
-    Pressable
+    Pressable,
+    ScrollView
   } from 'react-native';
   import I18n from "../i18n/i18n";
   import Styles from "../Styles";
@@ -51,37 +52,39 @@ export default class FixtureDetail extends React.Component {
         }
 
        return (
-            <View style={[Styles.containerDetail]}>
-                <View style={[Styles.row, Styles.teams, Styles.greenBox]}>
-                    <View style={[Styles.column, Styles.teamDetail]}>
-                        <Animated.Image source={{ uri: this.fixture.teams.home.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
-                        <Text style={Styles.teamDetailText}>{this.fixture.teams.home.name}</Text>
-                    </View>
-                    <View style={[Styles.column, Styles.teamDetail]}>
-                        <Animated.Image source={{ uri: this.fixture.teams.away.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
-                        <Text style={Styles.teamDetailText}>{this.fixture.teams.away.name}</Text>
-                    </View>
-                </View>
-                <View style={[Styles.row]}>
-                    <View style={[Styles.column, Styles.greenBox]}>
-                        <Animated.Image source={{ uri: Image.resolveAssetSource(Whistle).uri}} style={[[Styles.imageDetail, {opacity: this.opacity}]]}/>
-                        <Text style={[Styles.textBox]}>{referee}</Text>
-                    </View>
-                    <Pressable onPress={this.addReminder}>
-                        <View style={[Styles.column, Styles.greenBox]}>
-                            <Text style={[Styles.textBox]}>{I18n.t('textReminder')}</Text>
-                            <Animated.Image source={{ uri: Image.resolveAssetSource(Calendar).uri}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
-                            <Text style={[Styles.textBox]}>{this.convertDate(this.fixture.fixture.date)} - {this.convertHour(this.fixture.fixture.date)}</Text>
+            <ScrollView>
+                <View style={[Styles.containerDetail]}>
+                    <View style={[Styles.row, Styles.teams, Styles.greenBox]}>
+                        <View style={[Styles.column, Styles.teamDetail]}>
+                            <Animated.Image source={{ uri: this.fixture.teams.home.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
+                            <Text style={Styles.teamDetailText}>{this.fixture.teams.home.name}</Text>
                         </View>
-                    </Pressable>
-                </View>
-                <View style={[Styles.row]}>
-                    <View style={[Styles.column, Styles.greenBox]}>
-                            <Animated.Image source={{ uri: Image.resolveAssetSource(Stadium).uri}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
-                            <Text style={[Styles.textBox]}>{venue}</Text>
+                        <View style={[Styles.column, Styles.teamDetail]}>
+                            <Animated.Image source={{ uri: this.fixture.teams.away.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
+                            <Text style={Styles.teamDetailText}>{this.fixture.teams.away.name}</Text>
+                        </View>
+                    </View>
+                    <View style={[Styles.row]}>
+                        <View style={[Styles.column, Styles.rowElement, Styles.greenBox]}>
+                            <Animated.Image source={{ uri: Image.resolveAssetSource(Whistle).uri}} style={[[Styles.imageDetail, {opacity: this.opacity}]]}/>
+                            <Text style={[Styles.textBox]}>{referee}</Text>
+                        </View>
+                        <Pressable onPress={this.addReminder}>
+                            <View style={[Styles.column, Styles.rowElement, Styles.greenBox]}>
+                                <Text style={[Styles.textBox]}>{I18n.t('textReminder')}</Text>
+                                <Animated.Image source={{ uri: Image.resolveAssetSource(Calendar).uri}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
+                                <Text style={[Styles.textBox]}>{this.convertDate(this.fixture.fixture.date)}</Text>
+                            </View>
+                        </Pressable>
+                    </View>
+                    <View style={[Styles.row]}>
+                        <View style={[Styles.column, Styles.greenBox]}>
+                                <Animated.Image source={{ uri: Image.resolveAssetSource(Stadium).uri}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
+                                <Text style={[Styles.textBox]}>{venue}</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 

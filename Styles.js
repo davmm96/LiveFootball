@@ -30,7 +30,7 @@ export default StyleSheet.create({
         height: 60,
       },
       row: {
-        flexDirection: 'row'
+        flexDirection: 'row',
       },
       column: {
         flexDirection: 'column'
