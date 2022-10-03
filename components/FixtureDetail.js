@@ -55,14 +55,20 @@ export default class FixtureDetail extends React.Component {
             <ScrollView>
                 <View style={[Styles.containerDetail]}>
                     <View style={[Styles.row, Styles.teams, Styles.greenBox]}>
-                        <View style={[Styles.column, Styles.teamDetail]}>
-                            <Animated.Image source={{ uri: this.fixture.teams.home.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
-                            <Text style={Styles.teamDetailText}>{this.fixture.teams.home.name}</Text>
-                        </View>
-                        <View style={[Styles.column, Styles.teamDetail]}>
-                            <Animated.Image source={{ uri: this.fixture.teams.away.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
-                            <Text style={Styles.teamDetailText}>{this.fixture.teams.away.name}</Text>
-                        </View>
+                        <Pressable onPress={this.downloadImageLocal}>
+                            <View style={[Styles.column, Styles.teamDetail]}>
+                                <Animated.Image source={{ uri: this.fixture.teams.home.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
+                                <Text style={Styles.teamDetailText}>{this.fixture.teams.home.name}</Text>
+                                <Text style={Styles.teamSmallText}>{I18n.t('textDownload')}</Text>
+                            </View>
+                        </Pressable>
+                        <Pressable onPress={this.downloadImageAway}>
+                            <View style={[Styles.column, Styles.teamDetail]}>
+                                <Animated.Image source={{ uri: this.fixture.teams.away.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
+                                <Text style={Styles.teamDetailText}>{this.fixture.teams.away.name}</Text>
+                                <Text style={Styles.teamSmallText}>{I18n.t('textDownload')}</Text>
+                            </View>
+                        </Pressable>
                     </View>
                     <View style={[Styles.row]}>
                         <View style={[Styles.column, Styles.rowElement, Styles.greenBox]}>
@@ -99,6 +105,40 @@ export default class FixtureDetail extends React.Component {
             );
 
             alert(I18n.t('gameReminder'));
+        } catch (error) {
+            alert(error);
+        }
+    };
+
+    downloadImageLocal = async () => {
+        const name = this.fixture.teams.home.name;
+        const url = this.fixture.teams.home.logo;
+        const ImageManager = NativeModules.ImageManager;
+
+        try {
+            await ImageManager.downloadImage(
+                name, 
+                url
+            );
+
+            alert(I18n.t('imageDownloaded'));
+        } catch (error) {
+            alert(error);
+        }
+    };
+
+    downloadImageAway = async () => {
+        const name = this.fixture.teams.away.name;
+        const url = this.fixture.teams.away.logo;
+        const ImageManager = NativeModules.ImageManager;
+
+        try {
+            await ImageManager.downloadImage(
+                name, 
+                url
+            );
+
+            alert(I18n.t('imageDownloaded'));
         } catch (error) {
             alert(error);
         }

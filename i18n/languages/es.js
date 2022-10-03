@@ -15,6 +15,9 @@ export default {
     gameReminder: '¡Partido añadido correctamente!',
     textReminder: 'Añadir',
 
+    imageDownloaded: '¡Escudo descargado correctamente!',
+    textDownload: 'Descargar',
+
     leaguePreferencesPremier: '¡La Premier League es tu liga por defecto!',
     leaguePreferencesLiga: '¡La Liga Santander es tu liga por defecto!',
     leaguePreferencesBundesliga: '¡La Bundesliga es tu liga por defecto!',

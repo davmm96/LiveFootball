@@ -1,5 +1,5 @@
 //
-//  SPCalendarManager.h
+//  CalendarManager.h
 //  LiveFootball
 //
 //  Created by David Melero Morant on 11/9/22.
@@ -9,6 +9,6 @@
 
 #import <React/RCTBridgeModule.h>
 
-@interface SPCalendarManager : NSObject <RCTBridgeModule>
+@interface CalendarManager : NSObject <RCTBridgeModule>
 
 @end

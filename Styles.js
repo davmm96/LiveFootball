@@ -119,5 +119,10 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         letterSpacing: 0.25,
         color: 'white',
-      }
+      },
+      teamSmallText: {
+        fontSize: 12,
+        textAlign: 'center',
+        color: 'black'
+      },
 });

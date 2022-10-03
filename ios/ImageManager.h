@@ -2,15 +2,13 @@
 //  ImageManager.h
 //  LiveFootball
 //
-//  Created by David Melero Morant on 3/10/22.
+//  Created by David Melero Morant on 1/10/22.
 //
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+#import <React/RCTBridgeModule.h>
 
-@interface ImageManager : NSObject
+@interface ImageManager : NSObject <RCTBridgeModule>
 
 @end
-
-NS_ASSUME_NONNULL_END

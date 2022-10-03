@@ -15,6 +15,9 @@ export default {
     gameReminder: '¡Game added correctly!',
     textReminder: 'Add',
 
+    imageDownloaded: '¡Image downloaded!',
+    textDownload: 'Download',
+
     leaguePreferencesPremier: '¡Premier League is now your default league!',
     leaguePreferencesLiga: '¡Liga Santander is now your default league!',
     leaguePreferencesBundesliga: '¡Bundesliga is now your default league!',

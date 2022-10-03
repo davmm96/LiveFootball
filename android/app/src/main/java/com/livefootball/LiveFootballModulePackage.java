@@ -18,6 +18,7 @@ public class LiveFootballModulePackage implements ReactPackage {
         List<NativeModule> modules = new ArrayList<NativeModule>();
 
         modules.add(new CalendarManager(reactContext));
+        modules.add(new ImageManager(reactContext));
 
         return modules;
     }
