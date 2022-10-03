@@ -1,10 +1,10 @@
-#import "SPCalendarManager.h"
+#import "CalendarManager.h"
 
 #import <React/RCTConvert.h>
 
 @import EventKit;
 
-@implementation SPCalendarManager
+@implementation CalendarManager
 
 RCT_EXPORT_MODULE(CalendarManager)
 

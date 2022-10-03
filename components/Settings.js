@@ -6,8 +6,6 @@ import {
   Pressable,
   Text,
   View,
-  Button,
-  Alert
 } from 'react-native';
 
 import Styles from '../Styles';
