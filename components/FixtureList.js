@@ -34,16 +34,20 @@ export default class FixtureList extends React.Component {
   async loadFixtures(){
 
     this.setState({loading: true})
+  
+    this.league = await AsyncStorage.getItem('league')
+    this.games = await AsyncStorage.getItem('games')
 
-    
-    this.league = await AsyncStorage.getItem('league');
-    this.games = await AsyncStorage.getItem('games');
+    if(!this.league){
+      this.league = Constants.DEFAULT_LEAGUE;
+      AsyncStorage.setItem('league', Constants.ID_PREMIER.toString())
+    }
 
-    if(!this.league)
-      this.league = Constants.DEFAULT_LEAGUE
 
-    if(!this.games)
+    if(!this.games){
       this.games = Constants.DEFAULT_GAMES
+      AsyncStorage.setItem('games','10')
+    }
 
     const result = await this.apiClient.getFixtures(this.league,Constants.DEFAULT_SEASON, this.games)
 

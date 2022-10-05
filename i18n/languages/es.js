@@ -18,11 +18,7 @@ export default {
     imageDownloaded: '¡Escudo descargado correctamente!',
     textDownload: 'Descargar',
 
-    leaguePreferencesPremier: '¡La Premier League es tu liga por defecto!',
-    leaguePreferencesLiga: '¡La Liga Santander es tu liga por defecto!',
-    leaguePreferencesBundesliga: '¡La Bundesliga es tu liga por defecto!',
-    gamesPreferences10: '¡Se mostrarán 10 partidos en el feed!',
-    gamesPreferences20: '¡Se mostrarán 20 partidos en el feed!',
-    gamesPreferences30: '¡Se mostrarán 30 partidos en el feed!',
+    leaguePreferences: '¡Liga cambiada correctamente',
+    gamesPreferences: '¡Partidos cambiados correctamente!',
 }
 
