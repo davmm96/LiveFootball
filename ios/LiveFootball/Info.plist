@@ -41,6 +41,8 @@
 	<string></string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Download Image</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Download Image</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>

@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -20,6 +21,8 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.modules.core.PermissionAwareActivity;
+import com.facebook.react.modules.core.PermissionListener;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -32,16 +35,26 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ImageManager extends ReactContextBaseJavaModule {
+public class ImageManager extends ReactContextBaseJavaModule implements PermissionListener {
 
     public ImageManager(@NonNull ReactApplicationContext reactContext) {
         super(reactContext);
     }
 
+    private boolean permission = true;
+
     @NonNull
     @Override
     public String getName() {
         return "ImageManager";
+    }
+
+    @Override
+    public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (grantResults[0] != PackageManager.PERMISSION_GRANTED)
+            permission = false;
+
+        return true;
     }
 
     @ReactMethod
@@ -50,16 +63,30 @@ public class ImageManager extends ReactContextBaseJavaModule {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(getReactApplicationContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                 download(name, url);
+                promise.resolve(null);
             }
             else{
-                ActivityCompat.requestPermissions(getCurrentActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                PermissionAwareActivity activity = (PermissionAwareActivity) getCurrentActivity();
+
+                if (activity == null) {
+                    promise.reject(new Throwable("NO ACTIVITY"));
+                }
+
+                activity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1, this);
+
+                if(permission) {
+                    download(name, url);
+                    promise.resolve(null);
+                }
+                else {
+                    promise.reject(new Throwable("PERMISSION DENIED"));
+                }
             }
         }
         else{
             download(name, url);
+            promise.resolve(null);
         }
-
-        promise.resolve(null);
     }
 
     private void download(String name, String url) {

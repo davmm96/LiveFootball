@@ -1,8 +1,8 @@
 export default class Constants
 {
-  static API_KEY = '034da704a4fcc0f36f7f6c59b86529ff';
+  static API_KEY = '9367f7d27a547e8edcf6ab5ceb2c2a54';
   static BASE_URL = 'https://v3.football.api-sports.io';
-  static DEFAULT_LEAGUE = 140;
+  static DEFAULT_LEAGUE = 39;
   static DEFAULT_SEASON = 2022;
   static DEFAULT_GAMES = 10;
   

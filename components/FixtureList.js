@@ -40,7 +40,7 @@ export default class FixtureList extends React.Component {
 
     if(!this.league){
       this.league = Constants.DEFAULT_LEAGUE;
-      AsyncStorage.setItem('league', Constants.ID_PREMIER.toString())
+      AsyncStorage.setItem('league', Constants.DEFAULT_LEAGUE.toString())
     }
 
 
