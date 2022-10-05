@@ -77,17 +77,17 @@ export default class Settings extends React.Component {
                       <Text style={[Styles.textSettings]}>{I18n.t('settingsGames')}</Text>
                       <View style={[Styles.row, Styles.rowSettings]}>
                         <Pressable 
-                            style={[Styles.buttonSettings, this.state.games=='10' ? { backgroundColor: "green" } : {backgroundColor: "gray"}]} 
+                            style={[Styles.buttonSettings, this.state.games=='10' ? { backgroundColor: Constants.PRIMARY_COLOR } : {backgroundColor: "gray"}]} 
                             onPress={() => this.setGames('10')}>
                           <Text style={Styles.textButton}>10</Text>
                         </Pressable>
                         <Pressable 
-                          style={[Styles.buttonSettings, this.state.games=='20' ? { backgroundColor: "green" } : {backgroundColor: "gray"}]} 
+                          style={[Styles.buttonSettings, this.state.games=='20' ? { backgroundColor: Constants.PRIMARY_COLOR } : {backgroundColor: "gray"}]} 
                           onPress={() => this.setGames('20')}>
                           <Text style={Styles.textButton}>20</Text>
                         </Pressable>
                         <Pressable 
-                          style={[Styles.buttonSettings, this.state.games=='30' ? { backgroundColor: "green" } : {backgroundColor: "gray"}]} 
+                          style={[Styles.buttonSettings, this.state.games=='30' ? { backgroundColor: Constants.PRIMARY_COLOR } : {backgroundColor: "gray"}]} 
                           onPress={() => this.setGames('30')}>
                           <Text style={Styles.textButton}>30</Text>
                         </Pressable>
