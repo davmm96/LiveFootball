@@ -4,7 +4,9 @@ import {
     Text,
     Image,
     FlatList,
-    Animated
+    Animated,
+    TouchableOpacity,
+    NativeModules,
   } from 'react-native';
   import I18n from "../i18n/i18n";
   import Styles from "../Styles";
@@ -39,6 +41,9 @@ export default class FixtureLiveDetail extends React.Component {
                     <View style={[Styles.column, Styles.teamDetail]}>
                         <Image source={{ uri: this.fixture.teams.home.logo}} style={Styles.imageLive}/>
                         <Text style={Styles.teamDetailTextLive}>{this.fixture.teams.home.name}</Text>
+                        <TouchableOpacity onPress={this.downloadImageLocal} style={[Styles.column]}>
+                            <Text style={Styles.teamSmallText}>{I18n.t('textDownload')}</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={[Styles.column, Styles.teamDetail]}>
                         <Text style={Styles.teamDetailText}>{this.fixture.goals.home} - {this.fixture.goals.away}</Text>
@@ -47,6 +52,9 @@ export default class FixtureLiveDetail extends React.Component {
                     <View style={[Styles.column, Styles.teamDetail]}>
                         <Image source={{ uri: this.fixture.teams.away.logo}} style={Styles.imageLive}/>
                         <Text style={Styles.teamDetailTextLive}>{this.fixture.teams.away.name}</Text>
+                        <TouchableOpacity onPress={this.downloadImageAway} style={[Styles.column]}>
+                            <Text style={Styles.teamSmallText}>{I18n.t('textDownload')}</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <FlatList
@@ -82,4 +90,38 @@ export default class FixtureLiveDetail extends React.Component {
                                 style={Styles.imageEventLive}/> {item.player.name} <Image source={{ uri: item.team.logo}} style={Styles.imageEventLive}/></Text>
                     </Animated.View>)
     }
+
+    downloadImageLocal = async () => {
+        const name = this.fixture.teams.home.name;
+        const url = this.fixture.teams.home.logo;
+        const ImageManager = NativeModules.ImageManager;
+
+        try {
+            await ImageManager.downloadImage(
+                name, 
+                url
+            );
+
+            alert(I18n.t('imageDownloaded'));
+        } catch (error) {
+            alert(error);
+        }
+    };
+
+    downloadImageAway = async () => {
+        const name = this.fixture.teams.away.name;
+        const url = this.fixture.teams.away.logo;
+        const ImageManager = NativeModules.ImageManager;
+
+        try {
+            await ImageManager.downloadImage(
+                name, 
+                url
+            );
+
+            alert(I18n.t('imageDownloaded'));
+        } catch (error) {
+            alert(error);
+        }
+    };
 }

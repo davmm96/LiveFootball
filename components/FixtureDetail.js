@@ -7,7 +7,8 @@ import {
     Animated,
     NativeModules,
     Pressable,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
   } from 'react-native';
   import I18n from "../i18n/i18n";
   import Styles from "../Styles";
@@ -55,20 +56,20 @@ export default class FixtureDetail extends React.Component {
             <ScrollView>
                 <View style={[Styles.containerDetail]}>
                     <View style={[Styles.row, Styles.teams, Styles.greenBox]}>
-                        <Pressable onPress={this.downloadImageLocal}>
-                            <View style={[Styles.column, Styles.teamDetail]}>
-                                <Animated.Image source={{ uri: this.fixture.teams.home.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
-                                <Text style={Styles.teamDetailText}>{this.fixture.teams.home.name}</Text>
+                        <View style={[Styles.column, Styles.teamDetail]}>
+                            <Animated.Image source={{ uri: this.fixture.teams.home.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
+                            <Text style={Styles.teamDetailText}>{this.fixture.teams.home.name}</Text>
+                            <TouchableOpacity onPress={this.downloadImageLocal} style={[Styles.column]}>
                                 <Text style={Styles.teamSmallText}>{I18n.t('textDownload')}</Text>
-                            </View>
-                        </Pressable>
-                        <Pressable onPress={this.downloadImageAway}>
-                            <View style={[Styles.column, Styles.teamDetail]}>
-                                <Animated.Image source={{ uri: this.fixture.teams.away.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
-                                <Text style={Styles.teamDetailText}>{this.fixture.teams.away.name}</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={[Styles.column, Styles.teamDetail]}>
+                            <Animated.Image source={{ uri: this.fixture.teams.away.logo}} style={[Styles.imageDetail, {opacity: this.opacity}]}/>
+                            <Text style={Styles.teamDetailText}>{this.fixture.teams.away.name}</Text>
+                            <TouchableOpacity onPress={this.downloadImageAway} style={[Styles.column]}>
                                 <Text style={Styles.teamSmallText}>{I18n.t('textDownload')}</Text>
-                            </View>
-                        </Pressable>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     <View style={[Styles.row]}>
                         <View style={[Styles.column, Styles.rowElement, Styles.greenBox]}>

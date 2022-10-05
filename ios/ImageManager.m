@@ -12,19 +12,16 @@
 
 RCT_EXPORT_MODULE(ImageManager)
 
-RCT_EXPORT_METHOD(downloadImage:(NSString *)name date:(NSString *)url resolver:(RCTPromiseResolveBlock)resolver rejecter:(RCTPromiseRejectBlock)rejecter)
+RCT_EXPORT_METHOD(downloadImage:(NSString *)name url:(NSString *)url resolver:(RCTPromiseResolveBlock)resolver rejecter:(RCTPromiseRejectBlock)rejecter)
 {
-      UIImage * result;
-
-      NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-      result = [UIImage imageWithData:data];
-  
-      NSString * documentsDirectoryPath =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-  
-      [UIImagePNGRepresentation(result) writeToFile:[documentsDirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", name, @"png"]] options:NSAtomicWrite error:nil];
-  
-  
-  resolver(nil);
+      [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+             NSLog(@"Error downloading file: %@", error);
+        
+             UIImage *result = [UIImage imageWithData:data];
+             UIImageWriteToSavedPhotosAlbum(result, nil, nil, nil);
+        
+             resolver(nil);
+      }] resume];
 }
 
 @end

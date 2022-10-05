@@ -121,8 +121,8 @@ export default StyleSheet.create({
         color: 'white',
       },
       teamSmallText: {
-        fontSize: 12,
+        fontSize: 13,
         textAlign: 'center',
-        color: 'black'
+        color: '#2196F3'
       },
 });

@@ -47,12 +47,11 @@ public class ImageManager extends ReactContextBaseJavaModule {
     @ReactMethod
     public void downloadImage(String name, String url, Promise promise) {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(getReactApplicationContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
                 download(name, url);
             }
-            else
-            {
+            else{
                 ActivityCompat.requestPermissions(getCurrentActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         }
@@ -66,20 +65,21 @@ public class ImageManager extends ReactContextBaseJavaModule {
     private void download(String name, String url) {
 
         File directory = new File(Environment.DIRECTORY_PICTURES);
+        String nameFile = name+".png";
 
         if (!directory.exists()) {
             directory.mkdirs();
         }
 
         DownloadManager downloadManager = (DownloadManager) getReactApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
-
         Uri uri = Uri.parse(url);
         DownloadManager.Request request = new DownloadManager.Request(uri);
+
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
         request.setTitle("Team");
-        String nameFile = name+".png";
         request.setDestinationInExternalPublicDir(directory.toString(),nameFile);
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
         downloadManager.enqueue(request);
     }
 
