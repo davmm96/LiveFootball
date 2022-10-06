@@ -41,7 +41,9 @@ public class ImageManager extends ReactContextBaseJavaModule implements Permissi
         super(reactContext);
     }
 
-    private boolean permission = true;
+    private String name = "";
+    private String url = "" ;
+    private Promise promise;
 
     @NonNull
     @Override
@@ -51,14 +53,24 @@ public class ImageManager extends ReactContextBaseJavaModule implements Permissi
 
     @Override
     public boolean onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (grantResults[0] != PackageManager.PERMISSION_GRANTED)
-            permission = false;
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            download(name, url);
+            promise.resolve(null);
+        }
+        else
+        {
+            promise.reject(new Throwable("PERMISSION DENIED"));
+        }
 
         return true;
     }
 
     @ReactMethod
     public void downloadImage(String name, String url, Promise promise) {
+
+        this.name = name;
+        this.url = url;
+        this.promise = promise;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if(getReactApplicationContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
@@ -73,14 +85,6 @@ public class ImageManager extends ReactContextBaseJavaModule implements Permissi
                 }
 
                 activity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1, this);
-
-                if(permission) {
-                    download(name, url);
-                    promise.resolve(null);
-                }
-                else {
-                    promise.reject(new Throwable("PERMISSION DENIED"));
-                }
             }
         }
         else{
