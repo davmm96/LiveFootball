@@ -59,7 +59,7 @@ public class ImageManager extends ReactContextBaseJavaModule implements Permissi
         }
         else
         {
-            promise.reject(new Throwable("PERMISSION DENIED"));
+            promise.reject(new Throwable("Couldn't get access to the photo library"));
         }
 
         return true;
